@@ -54,7 +54,8 @@ var scriptOpts = {
     template(args) {
       return `Data Work.${args.datasetName};
       Set RTRAData.${args.datasetName};
-      %RTRAPercentile (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, AnalysisVar=${args.variables}, ClassVarList=${args.statisticBreakdown}`;
+      %RTRAPercentile (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, AnalysisVar=${args.variables},
+        ClassVarList=${args.statisticBreakdown}, Percentiles=${args.Mediantile}`;
     },
     options: [
       "datasetName",
