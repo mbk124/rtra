@@ -84,7 +84,7 @@ var scriptOpts = {
       "datasetName",
       "variables",
       "statisticBreakdown",
-      "Mean",
+      "Means",
       "outputFileName",
       "weightVariable"
     ]
