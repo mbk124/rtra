@@ -88,7 +88,6 @@ var scriptOpts = {
       "outputFileName",
       "weightVariable"
     ]
-  }
 };
 
 $(function() {
