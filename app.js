@@ -73,7 +73,7 @@ var scriptOpts = {
       "weightVariable"
     ]
   },
-  "Mean": {
+  "MeanStat": {
     template(args) {
       return `Data Work.${args.datasetName};
       Set RTRAData.${args.datasetName};
@@ -84,8 +84,7 @@ var scriptOpts = {
       "datasetName",
       "variables",
       "statisticBreakdown",
-      "Means",
-      "outputFileName",
+        "outputFileName",
       "weightVariable"
     ]
   }
