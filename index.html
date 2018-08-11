@@ -50,13 +50,16 @@
 </head>
 <body>
   <div id="banner-message">
-  <p>RTRA helper</p>
+  <p>RTRA program generator</p>
   <div>
     <select id="ScriptSelector">
     <option>Select a script</option>
     <option value="Counts">Counts</option>
+    <option value="CountsBrokenDown">Counts</option>
     <option value="Percentage">Percentage</option>
     <option value="PercentBrokenDown">Percentage broken down by a variable</option>
+    <option value="MedianPercentile">Counts</option>
+    <option value="Means">Counts</option>
     </select>
   </div>
 
@@ -76,6 +79,12 @@
       <label>Statistic breakdown by this var</label>
       <input type="text" />
       <small>Enter the name of the variable here</small>
+    </div>
+
+    <div id="Mediantile">
+      <label>Percentiles breakdown by this var</label>
+      <input type="text" />
+      <small>Enter the percentiles you want e.g 50 for median</small>
     </div>
 
     <div id="weightVariable">
@@ -114,6 +123,20 @@ var scriptOpts = {
     "outputFileName"
   ]
 },
+"CountsBrokenDown": {
+  template(args) {
+    return `Data Work.${args.datasetName};
+    Set RTRAData.${args.datasetName};
+    %RTRAFreq (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},`;
+  },
+  options: [
+    "datasetName",
+    "variables",
+    "statisticBreakdown",
+    "outputFileName"
+  ]
+}
+},
 Percentage: {
       template(args) {
     return `Data Work.${args.datasetName};
@@ -135,6 +158,37 @@ Percentage: {
   options: [
     "datasetName",
     "variables",
+    "statisticBreakdown",
+    "outputFileName"
+  ]
+}
+},
+"MedianPercentile": {
+  template(args) {
+    return `Data Work.${args.datasetName};
+    Set RTRAData.${args.datasetName};
+    %RTRAPercentile (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, AnalysisVar=${args.variables}, ClassVarList=${args.statisticBreakdown}`;
+  },
+  options: [
+    "datasetName",
+    "variables",
+    "statisticBreakdown",
+    "MedianPercentile"
+    "outputFileName"
+  ]
+}
+},
+"Means": {
+  template(args) {
+    return `Data Work.${args.datasetName};
+    Set RTRAData.${args.datasetName};
+    %RTRAPercentile (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, AnalysisVarList=${args.variables}, ClassVarList=${args.statisticBreakdown}`;
+  },
+  options: [
+    "datasetName",
+    "variables",
+    "statisticBreakdown",
+    "Means",
     "outputFileName"
   ]
 }
@@ -191,7 +245,7 @@ button.on("click", ()=> {
   var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
   // uncomment the next line to debug;
   // output.text(text);
-  saveAs(blob, args.datasetName+".sas");
+  saveAs(blob, `${args.datasetName}_${args.outputFileName}.sas`);
 
 })
 });
