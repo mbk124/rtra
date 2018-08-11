@@ -3,7 +3,8 @@ var scriptOpts = {
     template(args) {
       return `Data Work.${args.datasetName};
       Set RTRAData.${args.datasetName};
-      %RTRAFreq (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables}, UserWeight=${args.weightVariable});`;
+      %RTRAFreq (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},
+        UserWeight=${args.weightVariable});`;
     },
     options: [
       "datasetName",
@@ -16,38 +17,44 @@ var scriptOpts = {
     template(args) {
       return `Data Work.${args.datasetName};
       Set RTRAData.${args.datasetName};
-      %RTRAFreq (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},`;
+      %RTRAFreq (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},
+        UserWeight=${args.weightVariable})`;
     },
     options: [
       "datasetName",
       "variables",
       "statisticBreakdown",
-      "outputFileName"
+      "outputFileName",
+      "weightVariable"
     ]
   },
   "Percentage": {
     template(args) {
       return `Data Work.${args.datasetName};
       Set RTRAData.${args.datasetName};
-      %RTRAPercentDist (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},`;
+      %RTRAPercentDist (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},
+        UserWeight=${args.weightVariable})`;
     },
     options: [
       "datasetName",
       "variables",
-      "outputFileName"
+      "outputFileName",
+      "weightVariable"
     ]
   },
   "PercentBrokenDown": {
     template(args) {
       return `Data Work.${args.datasetName};
       Set RTRAData.${args.datasetName};
-      %RTRAProportion (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},`;
+      %RTRAProportion (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},
+        UserWeight=${args.weightVariable})`;
     },
     options: [
       "datasetName",
       "variables",
       "statisticBreakdown",
-      "outputFileName"
+      "outputFileName",
+      "weightVariable"
     ]
   },
   "MedianPercentile": {
@@ -55,28 +62,31 @@ var scriptOpts = {
       return `Data Work.${args.datasetName};
       Set RTRAData.${args.datasetName};
       %RTRAPercentile (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, AnalysisVar=${args.variables},
-        ClassVarList=${args.statisticBreakdown}, Percentiles=${args.Mediantile}`;
+        ClassVarList=${args.statisticBreakdown}, Percentiles=${args.Mediantile}, UserWeight=${args.weightVariable})`;
     },
     options: [
       "datasetName",
       "variables",
       "statisticBreakdown",
       "Mediantile",
-      "outputFileName"
+      "outputFileName",
+      "weightVariable"
     ]
   },
   "Means": {
     template(args) {
       return `Data Work.${args.datasetName};
       Set RTRAData.${args.datasetName};
-      %RTRAMean (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, AnalysisVarList=${args.variables}, ClassVarList=${args.statisticBreakdown}`;
+      %RTRAMean (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, AnalysisVarList=${args.variables},
+        ClassVarList=${args.statisticBreakdown}, UserWeight=${args.weightVariable})`;
     },
     options: [
       "datasetName",
       "variables",
       "statisticBreakdown",
       "Means",
-      "outputFileName"
+      "outputFileName",
+      "weightVariable"
     ]
   }
 };
