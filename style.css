@@ -25,12 +25,12 @@ button {
 
 fieldset div {
   text-align: left;
-  font-size: 12px;
+  font-size: 15px;
 
 }
 
 fieldset div small {
-  font-size: 10px;
+  font-size: 12px;
   display: block;
   font-style: italic;
 }
