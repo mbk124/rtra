@@ -26,7 +26,8 @@ button {
 fieldset div {
   text-align: left;
   font-size: 15px;
-  color: #8E500B;
+  color: #c70039;
+  font-weight: bold;
 }
 
 fieldset div small {
