@@ -61,7 +61,7 @@ var scriptOpts = {
       "datasetName",
       "variables",
       "statisticBreakdown",
-      "MedianPercentile",
+      "Mediantile",
       "outputFileName"
     ]
   },
