@@ -73,12 +73,13 @@
     <div id="variables">
       <label>Variable(s)</label>
       <input type="text" />
+      <small>Enter the name of the variable here</small>
     </div>
 
     <div id="statisticBreakdown">
       <label>Statistic breakdown by this var</label>
       <input type="text" />
-      <small>Enter the name of the variable here</small>
+      <small>Enter the name of the variable by which you want your statistic brokend down</small>
     </div>
 
     <div id="Mediantile">
@@ -141,7 +142,7 @@ Percentage: {
       template(args) {
     return `Data Work.${args.datasetName};
     Set RTRAData.${args.datasetName};
-    %RTRAFreq (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},`;
+    %RTRAPercentDist (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},`;
   },
   options: [
     "datasetName",
@@ -153,7 +154,7 @@ Percentage: {
   template(args) {
     return `Data Work.${args.datasetName};
     Set RTRAData.${args.datasetName};
-    %RTRAFreq (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},`;
+    %RTRAProportion (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},`;
   },
   options: [
     "datasetName",
@@ -182,7 +183,7 @@ Percentage: {
   template(args) {
     return `Data Work.${args.datasetName};
     Set RTRAData.${args.datasetName};
-    %RTRAPercentile (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, AnalysisVarList=${args.variables}, ClassVarList=${args.statisticBreakdown}`;
+    %RTRAMean (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, AnalysisVarList=${args.variables}, ClassVarList=${args.statisticBreakdown}`;
   },
   options: [
     "datasetName",
