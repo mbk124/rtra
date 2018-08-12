@@ -24,8 +24,9 @@ var scriptOpts = {
       "datasetName",
       "variables",
       "statisticBreakdown",
-      "outputFileName",
-      "weightVariable"
+      "weightVariable",
+      "outputFileName"
+
     ]
   },
   "Percentage": {
@@ -38,8 +39,8 @@ var scriptOpts = {
     options: [
       "datasetName",
       "variables",
-      "outputFileName",
-      "weightVariable"
+      "weightVariable",
+      "outputFileName"
     ]
   },
   "PercentBrokenDown": {
@@ -53,8 +54,9 @@ var scriptOpts = {
       "datasetName",
       "variables",
       "statisticBreakdown",
-      "outputFileName",
-      "weightVariable"
+      "weightVariable",
+      "outputFileName"
+
     ]
   },
   "MedianPercentile": {
@@ -69,8 +71,9 @@ var scriptOpts = {
       "variables",
       "statisticBreakdown",
       "mediantile",
-      "outputFileName",
-      "weightVariable"
+      "weightVariable",
+      "outputFileName"
+
     ]
   },
   "MeanStat": {
