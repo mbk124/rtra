@@ -7,58 +7,12 @@
 <body>
   <div id="banner-message">
   <p>RTRA program generator</p>
-  <div>
-    <select id="ScriptSelector">
-    <option>Select type of stastic to generate</option>
-    <option value="Counts">Counts</option>
-    <option value="CountsBrokenDown">Counts broken down by another variable</option>
-    <option value="Percentage">Percentage</option>
-    <option value="PercentBrokenDown">Percentage broken down by another variable</option>
-    <option value="MedianPercentile">Median and Percentiles</option>
-    <option value="Means">Means</option>
-    </select>
-  </div>
-
-  <fieldset id="scriptOptions">
-    <div id="datasetName">
-      <label>Dataset name</label>
-      <input type="text" />
-      <small>Enter the name of the dataset here</small>
-    </div>
-
-    <div id="variables">
-      <label>Variable(s)</label>
-      <input type="text" />
-      <small>Enter the name of the variable for which you want estimates here</small>
-    </div>
-
-    <div id="statisticBreakdown">
-      <label>Statistic breakdown by this var</label>
-      <input type="text" />
-      <small>Enter the name of the variable by which you want your statistic brokend down</small>
-    </div>
-
-    <div id="Mediantile">
-      <label>Percentiles breakdown by this var</label>
-      <input type="text" />
-      <small>Enter the percentiles you want e.g 50 for median. For multiple percentiles separate each with a space e.g. 25 50</small>
-    </div>
-
-    <div id="weightVariable">
-      <label>Weight variable name</label>
-      <input type="text" />
-      <small>Enter the name of the weight variable  here</small>
-    </div>
-
-    <div id="outputFileName">
-      <label>Ouput file name</label>
-      <input type="text" placeholder="" />
-      <small>Enter the name of the output file here</small>
-    </div>
-  </fieldset>
+  <button type="button" class="addScript">Add another program</button>
+  <div id="scriptContainer"></div>
 
   <div>
-    <button>Generate RTRA program</button>
+    <div><input type="text" id="requestName" placeholder="Request Name"><label for="requestName">Request Name</label></div>
+    <button class="generate">Generate RTRA program</button>
     <small>Click on this and a file will be downloaded that you can submit to RTRA</small>
   </div>
   <div>

@@ -30,15 +30,27 @@ fieldset div {
   font-weight: bold;
 }
 
-fieldset div small {
+#requestName + label {
+  font-size: 15px;
+}
+
+fieldset.empty {
+  display: none;
+}
+
+small {
   font-size: 12px;
 
   font-style: italic;
+}
+
+.datasetName {
+    color: green;
 }
 
 #output {
   width: 100%;
   height: 100px;
   padding: 5px;
-
+  display: none;
 }
