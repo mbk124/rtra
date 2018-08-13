@@ -6,12 +6,50 @@
 </head>
 <body>
   <div id="banner-message">
-  <p>RTRA program generator</p>
-  <button type="button" class="addScript">Add another program</button>
+  <h3>RTRA program generator</h3>
+  <div id="instructions">
+  Before preparing "code…"
+  <ul>
+    <li>
+      Step 1: For the statistic you are interested in, identify the data source or survey. You can get the "same" statistic from different sources. For example, you can % employed from the Census, APS and LFS.
+    </li>
+    <li>
+      Step 2: Get the data dictionary (also called code book). You can request it from Mohan Kumar (mohan.kumar@canada.ca) or Henry Robertson (henry.robertson@canada.ca) or download it using FileZilla using the instructions provided here: https://www.statcan.gc.ca/eng/rtra/ftp
+    </li>
+    <li>
+      Step 3: familiarize yourself with the data dictionary. This can be daunting since there are thousands of variables. But, you can start by finding variables of interest by searching the PDF or Word document (Ctrl + F).
+    </li>
+    <li>
+      Step 4: Get the document “rtrap.dox” (RTRA Parameters) from https://www.statcan.gc.ca/eng/rtra/rtrap
+    </li>
+    <li>
+      Step 5: In the document RTRA Parameters, find the data source or survey. For example, if you are interested in the 2012 Aboriginal Peoples Survey (APS), go to “APS 2012.” Here, get the:
+      <ol>
+        <li>
+          “Dataset Name”
+        </li>
+        <li>
+          “Weight Name”
+        </li>
+      </ol>
+    </li>
+  </ul>
+  <small>
+    Note the deleted variables. These are variables you will see in the data dictionary but wouldn’t be able to use them.
+  </small>
+</div>
+<div class="initialInputs">
+  <label for="datasetName">Enter data set name</label><input type="text" id="datasetName" placeholder="Data set name"/>
+</div>
+<div class="initialInputs">
+  <label for="weightVariable">Enter weight variable name</label><input type="text" id="weightVariable" placeholder="Weight variable name"/>
+</div>
+  <button type="button" class="addScript">Add a request (maximum 10)</button>
+
   <div id="scriptContainer"></div>
 
   <div>
-    <div><input type="text" id="requestName" placeholder="Request Name"><label for="requestName">Request Name</label></div>
+    <div><input type="text" id="requestName" placeholder="Request Name"><label for="requestName">Provide a Request Name (something that is meaningful to you e.g. date. NO SPACES)</label></div>
     <button class="generate">Generate RTRA program</button>
     <small>Click on this and a file will be downloaded that you can submit to RTRA</small>
   </div>

@@ -1,104 +1,88 @@
 var scriptOpts = {
   "Counts": {
-    template(args) {
-      return `Data Work.${args.datasetName};
-      Set RTRAData.${args.datasetName};
-      %RTRAFreq (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},
-        UserWeight=${args.weightVariable});`;
+    template(datasetName, weightVariable, args) {
+      return `Data Work.${datasetName};
+      Set RTRAData.${datasetName};
+      %RTRAFreq (InputDataset=work.${datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},
+        UserWeight=${weightVariable});`;
     },
     options: [
-      "datasetName",
       "variables",
-      "weightVariable",
       "outputFileName"
     ]
   },
   "CountsBrokenDown": {
-    template(args) {
-      return `Data Work.${args.datasetName};
-      Set RTRAData.${args.datasetName};
-      %RTRAFreq (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},
-        UserWeight=${args.weightVariable})`;
+    template(datasetName, weightVariable, args) {
+      return `Data Work.${datasetNamee};
+      Set RTRAData.${datasetName};
+      %RTRAFreq (InputDataset=work.${datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables} ${args.statisticBreakdown},
+        UserWeight=${weightVariable})`;
     },
     options: [
-      "datasetName",
       "variables",
       "statisticBreakdown",
-      "weightVariable",
-      "outputFileName"
+        "outputFileName"
 
     ]
   },
   "Percentage": {
-    template(args) {
-      return `Data Work.${args.datasetName};
-      Set RTRAData.${args.datasetName};
-      %RTRAPercentDist (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},
-        UserWeight=${args.weightVariable})`;
+    template(datasetName, weightVariable, args) {
+      return `Data Work.${datasetName};
+      Set RTRAData.${datasetName};
+      %RTRAPercentDist (InputDataset=work.${datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},
+        UserWeight=${weightVariable})`;
     },
     options: [
-      "datasetName",
       "variables",
-      "weightVariable",
       "outputFileName"
     ]
   },
   "PercentBrokenDown": {
-    template(args) {
-      return `Data Work.${args.datasetName};
-      Set RTRAData.${args.datasetName};
-      %RTRAProportion (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},
-        UserWeight=${args.weightVariable})`;
+    template(datasetName, weightVariable, args) {
+      return `Data Work.${datasetName};
+      Set RTRAData.${datasetName};
+      %RTRAProportion (InputDataset=work.${datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables},
+        ByVar=${args.statisticBreakdown}, UserWeight=${weightVariable})`;
     },
     options: [
-      "datasetName",
       "variables",
       "statisticBreakdown",
-      "weightVariable",
       "outputFileName"
 
     ]
   },
   "MedianPercentile": {
-    template(args) {
-      return `Data Work.${args.datasetName};
-      Set RTRAData.${args.datasetName};
-      %RTRAPercentile (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, AnalysisVar=${args.variables},
-        ClassVarList=${args.statisticBreakdown}, Percentiles=${args.mediantile}, UserWeight=${args.weightVariable})`;
+    template(datasetName, weightVariable, args) {
+      return `Data Work.${datasetName};
+      Set RTRAData.${datasetName};
+      %RTRAPercentile (InputDataset=work.${datasetName}, OutputName=${args.outputFileName}, AnalysisVar=${args.variables},
+        ClassVarList=${args.statisticBreakdown}, Percentiles=${args.mediantile}, UserWeight=${weightVariable})`;
     },
     options: [
-      "datasetName",
       "variables",
       "statisticBreakdown",
       "mediantile",
-      "weightVariable",
       "outputFileName"
 
     ]
   },
   "MeanStat": {
-    template(args) {
-      return `Data Work.${args.datasetName};
-      Set RTRAData.${args.datasetName};
-      %RTRAMean (InputDataset=work.${args.datasetName}, OutputName=${args.outputFileName}, AnalysisVarList=${args.variables},
-        ClassVarList=${args.statisticBreakdown}, UserWeight=${args.weightVariable})`;
+    template(datasetName, weightVariable, args) {
+      return `Data Work.${datasetName};
+      Set RTRAData.${datasetName};
+      %RTRAMean (InputDataset=work.${datasetName}, OutputName=${args.outputFileName}, AnalysisVarList=${args.variables},
+        ClassVarList=${args.statisticBreakdown}, UserWeight=${weightVariable})`;
     },
     options: [
-      "datasetName",
       "variables",
       "statisticBreakdown",
-      "outputFileName",
-      "weightVariable"
+      "outputFileName"
+
     ]
   }
 };
 
 var optionTypes = {
-  datasetName: {
-    className: 'datasetName',
-    label: 'Dataset name',
-    helpText: 'Enter the name of the dataset here'
-  },
 
   variables: {
     className: 'variables',
@@ -118,154 +102,153 @@ var optionTypes = {
     helpText: 'Enter the percentiles you want e.g 50 for median. For multiple percentiles separate each with a space e.g. 25 50'
   },
 
-  weightVariable: {
-    className: 'weightVariable',
-    label: 'Weight variable name',
-    helpText: 'Enter the name of the weight variable  here'
-  },
-
   outputFileName: {
     className: 'outputFileName',
-    label: 'Output file namee',
-    helpText: 'Enter the name of the output file here'
-  },
-}
+    label: 'Output file name',
+    helpText: 'Enter the name of the output file here (no spaces allowed)'
+  }
+};
 
 $(function() {
-// find elements
-const banner = $("#banner-message");
-const generateButton = $(".generate");
-const output = $("#output");
-const scriptContainer = $("#scriptContainer");
-const addScript = $('.addScript');
-const requestName = $('#requestName');
+  // find elements
+  const banner = $("#banner-message");
+  const generateButton = $(".generate");
+  const datasetName = $('#datasetName');
+  const weightVariable = $('#weightVariable');
+  const output = $("#output");
+  const scriptContainer = $("#scriptContainer");
+  const addScript = $('.addScript');
+  const requestName = $('#requestName');
 
-function createOption (className, label, helpText) {
-  var template = `<div class="${className}">
-        <label>${label}</label>
-        <input type="text" />
-        <small>${helpText}</small>
-      </div>`;
+  function createOption (className, label, helpText) {
+    var template = `<div class="${className}">
+          <label>${label}</label>
+          <input type="text" />
+          <small>${helpText}</small>
+        </div>`;
 
-      return $(template);
-}
-
-function createScript () {
-  var template = `<div class="scriptGenerator">
-    <div>
-      <select class="scriptSelector">
-      <option>Select type of stastic to generate</option>
-      <option value="Counts">Counts</option>
-      <option value="CountsBrokenDown">Counts broken down by another variable</option>
-      <option value="Percentage">Percentage</option>
-      <option value="PercentBrokenDown">Percentage broken down by another variable</option>
-      <option value="MedianPercentile">Median and Percentiles</option>
-      <option value="MeanStat">Means</option>
-      </select>
-    </div>
-
-    <fieldset class="scriptOptions">
-
-    </fieldset>
-  </div> `;
-
-  var generator = $(template);
-
-  var ss = generator.find(".scriptSelector");
-  var so = generator.find(".scriptOptions");
-
-  ss.on("change", () => {
-    var selectedScript = ss.val();
-    var selectedObject = scriptOpts[selectedScript] || {};
-    var options = selectedObject.options || [];
-
-    so.empty();
-    options.forEach((optionToShow) => {
-      var optionType = optionTypes[optionToShow];
-      var optionElement = createOption(optionType.className, optionType.label, optionType.helpText);
-      so.append(optionElement);
-    });
-
-    so.toggleClass('empty', options.length === 0);
-  });
-
-  so.addClass('empty');
-
-  scriptContainer.append(generator);
-}
-
-// this is the part where we initialize the code
-createScript();
-
-// handle click and add class
-
-
-addScript.on("click",()=> {
-  if ( $('.scriptGenerator').length === 10 ) {
-    alert('Maximum of ten programs allowed');
-    return;
+        return $(template);
   }
 
-  createScript();
-});
+  function createScript () {
+    var template = `<div class="scriptGenerator">
+      <div>
+        <select class="scriptSelector">
+        <option>Select type of stastic to generate</option>
+        <option value="Counts">Counts</option>
+        <option value="CountsBrokenDown">Counts broken down by another variable</option>
+        <option value="Percentage">Percentage</option>
+        <option value="PercentBrokenDown">Percentage broken down by another variable</option>
+        <option value="MedianPercentile">Median and Percentiles</option>
+        <option value="MeanStat">Means</option>
+        </select>
+      </div>
 
-generateButton.on("click", ()=> {
-  var outputTotalScript = [];
+      <fieldset class="scriptOptions">
 
-  var success = Array.from($('.scriptGenerator')).every((element) => {
-    var generator = $(element);
+      </fieldset>
+    </div> `;
+
+    var generator = $(template);
+
     var ss = generator.find(".scriptSelector");
     var so = generator.find(".scriptOptions");
 
-    var selectedScript = ss.val();
+    ss.on("change", () => {
+      var selectedScript = ss.val();
+      var selectedObject = scriptOpts[selectedScript] || {};
+      var options = selectedObject.options || [];
 
-    if (!(selectedScript in scriptOpts)){
-      alert('select a valid option');
+      so.empty();
+      options.forEach((optionToShow) => {
+        var optionType = optionTypes[optionToShow];
+        var optionElement = createOption(optionType.className, optionType.label, optionType.helpText);
+        so.append(optionElement);
+      });
+
+      so.toggleClass('empty', options.length === 0);
+    });
+
+    so.addClass('empty');
+
+    scriptContainer.append(generator);
+  }
+
+  // this is the part where we initialize the code
+  createScript();
+
+  // handle click and add class
+  addScript.on("click", () => {
+    if ( $('.scriptGenerator').length === 10 ) {
+      alert('Maximum of ten programs allowed');
       return;
     }
 
-    var selected = scriptOpts[selectedScript];
+    createScript();
+  });
 
-    var args = {};
-    var genSuccess = selected.options.every((option) =>
-    {
-      args[option] = generator.find(`.${option} input`).val();
+  generateButton.on("click", () => {
+    var outputTotalScript = [];
 
-      if (args[option].length === 0) {
-        const optionLabel = generator.find(`.${option} label`).text();
-        alert(`You missed an option: "${optionLabel}"`);
-        generator.find(`.${option} input`).focus();
+    const dsn = datasetName.val().trim();
+    const wt = weightVariable.val().trim();
+    const isValidDsn = dsn.length > 0;
+    const isValidWt = wt.length > 0;
+
+    if (!isValidDsn) {
+      alert('Please provide a dataset name');
+      return;
+    }
+
+    if (!isValidWt) {
+      alert('Please provide a weight variable name');
+      return;
+    }
+
+    var success = Array.from($('.scriptGenerator')).every((element) => {
+      var generator = $(element);
+      var ss = generator.find(".scriptSelector");
+      var so = generator.find(".scriptOptions");
+
+      var selectedScript = ss.val();
+
+      if (!(selectedScript in scriptOpts)) {
+        alert('select a valid option');
         return false;
       }
 
+      var selected = scriptOpts[selectedScript];
+
+      var args = {};
+      var genSuccess = selected.options.every((option) => {
+        args[option] = generator.find(`.${option} input`).val();
+
+        if (args[option].length === 0) {
+          const optionLabel = generator.find(`.${option} label`).text();
+          alert(`You missed an option: "${optionLabel}"`);
+          generator.find(`.${option} input`).focus();
+          return false;
+        }
+
+        return true;
+      });
+
+      if (!genSuccess) {
+        return false;
+      }
+
+      outputTotalScript.push(selected.template(dsn, wt, args));
       return true;
     });
 
-    if (!genSuccess) {
-      return false;
+    if (!success) {
+      return;
     }
 
-    outputTotalScript.push(selected.template(args));
-    return true;
+    var text = outputTotalScript.join('\r\n\r\n');
+    var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+    // uncomment the next line to debug;
+    // output.text(text);
+    saveAs(blob, `${dsn}_${requestName.val() || 'v'}.sas`);
   });
-
-  if(!success) {
-    return;
-  }
-
-  const allDSNames = Array.from($('.datasetName')).map((element) => $(element).find('input').val());
-  const firstDSN = allDSNames[0];
-  const allDSNamesAreEqual = allDSNames.every((name) => name === firstDSN);
-
-  if (!allDSNamesAreEqual) {
-    alert('Not all the Dataset Names are equal, they must be in order to run this program');
-    return;
-  }
-
-  var text = outputTotalScript.join('\r\n\r\n');
-  var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
-  // uncomment the next line to debug;
-  // output.text(text);
-  saveAs(blob, `${firstDSN}_${requestName.val() || 'v'}.sas`);
-})
 });

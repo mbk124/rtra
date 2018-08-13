@@ -8,10 +8,18 @@ body {
   background: #fff;
   border-radius: 4px;
   padding: 20px;
-  font-size: 50px;
-  text-align: center;
+  font-size: 15px;
+  text-align: left;
   transition: all 0.2s;
   margin: 0 auto;
+}
+
+h3 {
+  font-size: 25px;
+}
+
+#instructions {
+  font-size: 13px;
 }
 
 button {
@@ -23,6 +31,13 @@ button {
   color: #fff;
 }
 
+ul > li {
+  list-style-type: none;
+}
+
+button.addScript {
+  margin-bottom: 15px;
+}
 fieldset div {
   text-align: left;
   font-size: 15px;
@@ -30,7 +45,11 @@ fieldset div {
   font-weight: bold;
 }
 
-#requestName + label {
+.initialInputs {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+label {
   font-size: 15px;
 }
 
