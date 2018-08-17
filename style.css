@@ -20,6 +20,8 @@ h3 {
 
 #instructions {
   font-size: 13px;
+  color: #d82406;
+  padding-bottom: 10px;
 }
 
 button {
@@ -36,8 +38,15 @@ ul > li {
 }
 
 button.addScript {
+  margin-top: 10px;
   margin-bottom: 15px;
 }
+
+button.generate {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 fieldset div {
   text-align: left;
   font-size: 15px;
@@ -47,10 +56,10 @@ fieldset div {
 
 .initialInputs {
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 label {
-  font-size: 15px;
+  display: block;
 }
 
 fieldset.empty {

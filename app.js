@@ -87,13 +87,13 @@ var optionTypes = {
   variables: {
     className: 'variables',
     label: 'Variable(s)',
-    helpText: 'Enter the name of the variable for which you want estimates here'
+    helpText: 'Enter the name of the variable (from data dictionary) for which you want estimates here. You can enter multiple variables, each separated by space'
   },
 
   statisticBreakdown: {
     className: 'statisticBreakdown',
     label: 'Statistic breakdown by this var',
-    helpText: 'Enter the name of the variable by which you want your statistic broken down'
+    helpText: 'Enter the name of the variable (from data dictionary) by which you want your statistic broken down. You can enter multiple variables, each separated by space'
   },
 
   mediantile: {
@@ -105,7 +105,7 @@ var optionTypes = {
   outputFileName: {
     className: 'outputFileName',
     label: 'Output file name',
-    helpText: 'Enter the name of the output file here (no spaces allowed)'
+    helpText: 'Enter the name of the output file here (NO SPACES or SPECIAL CHARACTERS)'
   }
 };
 
