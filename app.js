@@ -105,7 +105,7 @@ var optionTypes = {
   outputFileName: {
     className: 'outputFileName',
     label: 'Output file name',
-    helpText: 'Enter the name of the output file here (NO SPACES or SPECIAL CHARACTERS)'
+    helpText: 'Enter the name of the output file here (Limited to 8 characters and NO SPACES or SPECIAL CHARACTERS). It could be a descriptive name e.g. educpercent'
   }
 };
 
