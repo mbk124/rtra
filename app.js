@@ -13,7 +13,7 @@ var scriptOpts = {
   },
   "CountsBrokenDown": {
     template(datasetName, weightVariable, args) {
-      return `Data Work.${datasetNamee};
+      return `Data Work.${datasetName};
       Set RTRAData.${datasetName};
       %RTRAFreq (InputDataset=work.${datasetName}, OutputName=${args.outputFileName}, ClassVarList=${args.variables} ${args.statisticBreakdown},
         UserWeight=${weightVariable})`;
@@ -98,7 +98,7 @@ var optionTypes = {
 
   mediantile: {
     className: 'mediantile',
-    label: 'Percentiles breakdown by this var',
+    label: 'Percentiles requested this var',
     helpText: 'Enter the percentiles you want e.g 50 for median. For multiple percentiles separate each with a space e.g. 25 50'
   },
 
