@@ -86,14 +86,14 @@ var optionTypes = {
 
   variables: {
     className: 'variables',
-    label: 'Variable(s)',
-    helpText: 'Enter the name of the variable (from data dictionary) for which you want estimates here. You can enter multiple variables, each separated by space'
+    label: 'Statistic breakdown by this var',
+    helpText: 'Enter the name of the variable (from data dictionary) by which you want your statistic broken down. You can enter upto 4 variables, each separated by space'
   },
 
   statisticBreakdown: {
     className: 'statisticBreakdown',
-    label: 'Statistic breakdown by this var',
-    helpText: 'Enter the name of the variable (from data dictionary) by which you want your statistic broken down. You can enter multiple variables, each separated by space'
+    label: 'Variable(s)',
+    helpText: 'Enter the name of the variable (from data dictionary) for which you want estimates here. You can enter multiple variables, each separated by space'
   },
 
   mediantile: {
