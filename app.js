@@ -93,7 +93,7 @@ var optionTypes = {
   statisticBreakdown: {
     className: 'statisticBreakdown',
     label: 'Variable(s)',
-    helpText: 'Enter the name of the variable (from data dictionary) for which you want estimates here. You can enter multiple variables, each separated by space'
+    helpText: 'Enter the name of the variable (from data dictionary) for which you want estimates here. You can only enter 1 variable here'
   },
 
   mediantile: {
