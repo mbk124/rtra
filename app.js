@@ -87,7 +87,7 @@ var optionTypes = {
   variables: {
     className: 'variables',
     label: 'Statistic breakdown by this var',
-    helpText: 'Enter the name of the variable (from data dictionary) by which you want your statistic broken down. You can enter upto 4 variables, each separated by space'
+    helpText: 'Enter the name of the variable (from data dictionary) by which you want your statistic broken down. You can enter upto 4 variables, each separated by space, for percentages and means, BUT NOT FOR PERCENTILES (ONLY 1)'
   },
 
   statisticBreakdown: {
